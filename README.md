@@ -1,8 +1,14 @@
 # raritan-pdu-exporter
-Get power metrics from Raritan PDUs
+Get power metrics from Raritan PDUs.
 
 Uses lots of ideas from blackbox exporter, and here:
 <https://github.com/yrro/nexsan-exporter>
+
+There are other more feature rich exporters,
+but here we are trying to query a minimal set of
+metrics, as frequently as we can. If that is not
+your goal, you might find this is better:
+<https://github.com/tanenbaum/raritan-pdu-exporter>
 
 ## Install
 
