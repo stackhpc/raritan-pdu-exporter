@@ -1,0 +1,14 @@
+localhost ansible_connection=local
+
+[prometheus]
+localhost
+
+[alertmanager]
+
+[grafana]
+localhost
+
+[exporters]
+
+[all:vars]
+pdus = ["10.42.2.1"]

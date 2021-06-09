@@ -1,0 +1,25 @@
+---
+grafana_security:
+  admin_user: admin
+  #admin_password: "{{ vault_grafana_password }}"
+  admin_password: 09b56326-fadf-4ae8-8788-e9f46fb2bdf2
+
+grafana_auth:
+  anonymous:
+    org_name: "Main Org."
+    org_role: Viewer
+
+grafana_datasources:
+- name: "Prometheus"
+  type: "prometheus"
+  access: "proxy"
+  url: "http://{{ ansible_host }}:9090"
+  isDefault: true
+
+grafana_dashboards:
+- dashboard_id: 1860
+  datasource: 'Prometheus'
+  revision_id: 23
+- dashboard_id: 405
+  datasource: 'Prometheus'
+  revision_id: 8

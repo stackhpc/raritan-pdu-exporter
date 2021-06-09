@@ -47,3 +47,17 @@ Something like the following:
           target_label: instance
         - target_label: __address__
           replacement: exporter-host:8042
+
+# Ansible
+
+To install prometheus, and scrape the above test service:
+
+    cd ansible
+
+    python3 -m venv .venv
+    . .venv/bin/activate
+    pip install -U pip setuptools
+    pip install -r requirements.txt
+
+    ansible-galaxy install -f -r requirements.yml
+    ansible-playbook site.yml -i inventory
