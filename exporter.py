@@ -107,28 +107,28 @@ class RaritanPDUCollector(object):
         #yield pdu_power
         #yield pdu_energy
 
-        outlet_power = prometheus.GaugeMetricFamily("OutletActivePower", 'Outlet power in W',
-                                                    labels=['pdu', 'outlet'])
-        outlet_energy = prometheus.GaugeMetricFamily("OutletActiveEnergy", 'Outlet energy in J',
-                                                     labels=['pdu', 'outlet'])
+        #outlet_power = prometheus.GaugeMetricFamily("OutletActivePower", 'Outlet power in W',
+        #                                            labels=['pdu', 'outlet'])
+        #outlet_energy = prometheus.GaugeMetricFamily("OutletActiveEnergy", 'Outlet energy in J',
+        #                                             labels=['pdu', 'outlet'])
 
-        outlets = pdu.getOutlets()
-        for outlet in outlets:
-            outlet_sensors = outlet.getSensors()
-            outlet_metadata = outlet.getMetaData()
-            outlet_power.add_metric([self.target, outlet_metadata.label], outlet_sensors.activePower.getReading().value)
-            outlet_energy.add_metric([self.target, outlet_metadata.label], outlet_sensors.activeEnergy.getReading().value)
+        #outlets = pdu.getOutlets()
+        #for outlet in outlets:
+        #    outlet_sensors = outlet.getSensors()
+        #    outlet_metadata = outlet.getMetaData()
+        #    outlet_power.add_metric([self.target, outlet_metadata.label], outlet_sensors.activePower.getReading().value)
+        #    outlet_energy.add_metric([self.target, outlet_metadata.label], outlet_sensors.activeEnergy.getReading().value)
 
-        yield outlet_power
-        yield outlet_energy
+        #yield outlet_power
+        #yield outlet_energy
 
         inlet_power = prometheus.GaugeMetricFamily("InletActivePower", 'Inlet power in W',
                                                    labels=['pdu', 'inlet'])
         inlets = pdu.getInlets()
         for inlet in inlets:
             inlet_sensors = inlet.getSensors()
-            inlet_metadata = inlet.getMetaData()
-            inlet_power.add_metric([self.target, inlet_metadata.label], inlet_sensors.activePower.getReading().value)
+            #inlet_metadata = inlet.getMetaData()
+            inlet_power.add_metric([self.target, "in"], inlet_sensors.activePower.getReading().value)
 
         yield inlet_power
 
