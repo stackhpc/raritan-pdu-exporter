@@ -102,8 +102,8 @@ class RaritanPDUCollector(object):
         #                                         labels=['pdu'])
         #pdu_energy = prometheus.GaugeMetricFamily("PDUActiveEnergy", 'Outlet energy in J',
         #                                          labels=['pdu'])
-        #pdu_power.add_metric([self.target], pdu_sensors.activePower.getReading())
-        #pdu_energy.add_metric([self.target], pdu_sensors.activeEnergy.getReading())
+        #pdu_power.add_metric([self.target], pdu_sensors.activePower.getReading().value)
+        #pdu_energy.add_metric([self.target], pdu_sensors.activeEnergy.getReading().value)
         #yield pdu_power
         #yield pdu_energy
 
@@ -116,8 +116,8 @@ class RaritanPDUCollector(object):
         for outlet in outlets:
             outlet_sensors = outlet.getSensors()
             outlet_metadata = outlet.getMetaData()
-            outlet_power.add_metric([self.target, outlet_metadata.label], outlet_sensors.activePower.getReading())
-            outlet_energy.add_metric([self.target, outlet_metadata.label], outlet_sensors.activeEnergy.getReading())
+            outlet_power.add_metric([self.target, outlet_metadata.label], outlet_sensors.activePower.getReading().value)
+            outlet_energy.add_metric([self.target, outlet_metadata.label], outlet_sensors.activeEnergy.getReading().value)
 
         yield outlet_power
         yield outlet_energy
@@ -128,7 +128,7 @@ class RaritanPDUCollector(object):
         for inlet in inlets:
             inlet_sensors = inlet.getSensors()
             inlet_metadata = inlet.getMetaData()
-            inlet_power.add_metric([self.target, inlet_metadata.label], inlet_sensors.activePower.getReading())
+            inlet_power.add_metric([self.target, inlet_metadata.label], inlet_sensors.activePower.getReading().value)
 
         yield inlet_power
 
