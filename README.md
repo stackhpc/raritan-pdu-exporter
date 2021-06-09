@@ -25,7 +25,7 @@ You can install this in a venv like so:
 To run the exporter do and try it, do:
 
     ./exporter.py &
-    curl "http://localhost:8042/probe?target=10.42.1.1&user=admin&pass=mysecret"
+    curl "http://localhost:8042/probe?target=10.42.1.1&user=admin&pass=$MY_PASSWORD"
 
 ## Prometheus configuration
 
