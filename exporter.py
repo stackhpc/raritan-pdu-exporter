@@ -97,20 +97,20 @@ class RaritanPDUCollector(object):
         agent = get_agent(self.target, self.user, self.password)
         pdu = pdumodel.Pdu("/model/pdu/0", agent)
 
-        power = prometheus.GaugeMetricFamily("OutletActivePower", 'Outlet power in W',
-                                             labels=['pdu', 'outlet'])
-        energy = prometheus.GaugeMetricFamily("OutletActiveEnergy", 'Outlet energy in J',
-                                             labels=['pdu', 'outlet'])
+        outlet_power = prometheus.GaugeMetricFamily("OutletActivePower", 'Outlet power in W',
+                                                    labels=['pdu', 'outlet'])
+        outlet_energy = prometheus.GaugeMetricFamily("OutletActiveEnergy", 'Outlet energy in J',
+                                                     labels=['pdu', 'outlet'])
 
         outlets = pdu.getOutlets()
         for outlet in outlets:
             outlet_sensors = outlet.getSensors()
             outlet_metadata = outlet.getMetaData()
-            power.add_metric([self.target, outlet_metadata.label], outlet_sensors.activePower.getReading())
-            energy.add_metric([self.target, outlet_metadata.label], outlet_sensors.activeEnergy.getReading())
+            outlet_power.add_metric([self.target, outlet_metadata.label], outlet_sensors.activePower.getReading())
+            outlet_energy.add_metric([self.target, outlet_metadata.label], outlet_sensors.activeEnergy.getReading())
 
-        yield power
-        yield energy
+        yield outlet_power
+        yield outlet_energy
 
         inlet_power = prometheus.GaugeMetricFamily("InletActivePower", 'Inlet power in W',
                                                    labels=['pdu', 'inlet'])
