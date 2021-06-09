@@ -83,8 +83,8 @@ def not_found(environ, start_response):
 
 
 def get_agent(ip, user, pw):
-    # TODO: return rpc.Agent("https", ip, user, pw, disable_certificate_verification=True)
-    return rpc.Agent("https", ip, user, pw)
+    return rpc.Agent("https", ip, user, pw, disable_certificate_verification=True)
+    # TODO?? return rpc.Agent("https", ip, user, pw)
 
 
 class RaritanPDUCollector(object):
