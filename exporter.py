@@ -110,6 +110,17 @@ class RaritanPDUCollector(object):
             energy.add_metric([self.target, outlet_metadata.label], outlet_sensors.activeEnergy.getReading())
 
         yield power
+        yield energy
+
+        inlet_power = prometheus.GaugeMetricFamily("InletActivePower", 'Inlet power in W',
+                                                   labels=['pdu', 'inlet'])
+        inlets = pdu.getInlets()
+        for inlet in inlets:
+            inlet_sensors = inlet.getSensors()
+            inlet_metadata = inlet.getMetaData()
+            inlet_power.add_metric([self.target, inlet_metadata.label], inlet_sensors.activePower.getReading())
+
+        yield inlet_power
 
 
 class _SilentHandler(WSGIRequestHandler):
