@@ -14,6 +14,9 @@ your goal, you might find this is better:
 
 You can install this in a venv like so:
 
+    git clone https://github.com/stackhpc/raritan-pdu-exporter.git
+    cd raritan-pdu-exporter
+
     python3 -m venv .venv
     . .venv/bin/activate
     pip install -U pip
