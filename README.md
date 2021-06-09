@@ -31,6 +31,8 @@ Something like the following:
     scrape_configs:
      - job_name: raritan
        metrics_path: /probe
+       scrape_interval: 1s
+       scrape_timeout: 500ms
        static_configs:
         - targets:
             - 10.42.2.1
