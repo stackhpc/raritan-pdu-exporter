@@ -100,6 +100,10 @@ prometheus_scrape_configs:
    - source_labels: [__param_target]
      target_label: instance
    - target_label: __address__
-     replacement: localhost:8042
+     replacement: gw02:8042
+   - target_label: __param_user
+     replacement: admin
+   - target_label: __param_pass
+     replacement: TODO-password
   static_configs:
    - targets: "{{ pdus | list }}"
